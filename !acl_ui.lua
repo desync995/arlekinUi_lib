@@ -1,3 +1,4 @@
+ARLEKINUI_VER = 0.1
 --- Алиас для создания хука
 --- @param eventName string
 --- @param uid string
