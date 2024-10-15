@@ -27,6 +27,25 @@ if CLIENT then
     local base_h = ScrH() / 1080
     local math_Round = math.Round
     local cache_h = {}
+    local cachedColors = {}
+    local oldColor = Color
+
+    --- Создает кешированный цвет (TEST)
+    --- @param r number
+    --- @param g number
+    --- @param b number
+    --- @param a number
+    --- @return Color
+    function Color(r, g, b, a)
+        local mixed = string.format('%d%d%d%d', r, g, b, a or 255)
+        if cachedColors[mixed] then
+            return cachedColors[mixed]
+        end
+
+        local toMix = string.format('%d%d%d%d', r, g, b, a or 255)
+        cachedColors[toMix] = oldColor(r, g, b, a)
+        return oldColor(r, g, b, a)
+    end
 
     --- Создает шрифт
     --- usage - CreateFont('usagename@family@size')
